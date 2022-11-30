@@ -1,4 +1,27 @@
 baseURL = 'https://spinningplates.net/'
 languageCode = 'en-us'
-title = 'A blog by gregf'
+title = 'spinning plates'
 theme = 'PaperMod'
+
+[params]
+  [params.homeInfoParams]
+    Title = 'Hi there'
+    Content = 'Info, links, about me...'
+
+  [[params.socialIcons]]
+    name = 'twitter'
+    url = 'https://twitter.com/fordy8k'
+  [[params.socialIcons]]
+    name = '<platform 2>'
+    url = '<link2>'
+
+[menu]
+[[menu.main]]
+  identifier = 'about'
+  name = 'about hugo'
+  url = '/about/'
+  weight = -110
+[[menu.main]]
+  name = 'getting started'
+  url = '/getting-started/'
+  weight = -100
