@@ -1,4 +1,4 @@
-baseURL = 'https://gregf.au/'
+baseURL = 'https://spinningplates.net/'
 languageCode = 'en-us'
 title = 'A blog by gregf'
 theme = 'PaperMod'
