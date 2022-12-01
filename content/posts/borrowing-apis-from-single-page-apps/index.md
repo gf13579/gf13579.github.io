@@ -2,10 +2,7 @@
 title: "Connecting the Unconnectable; Borrowing APIs from Single Page Applications"
 date: 2022-12-01T20:49:16+10:00
 draft: true
-params:
-  linkFullImages: true
 ---
-
 
 A SIEM typically collects event data, run detections, generates alerts and serves as a single pane of glass for security alerts. One of the fundamental types of event to ingest is malware alerts from endpoint antivirus and EDR solutions. Malware alerts may seem dull - no user behaviour analytics, no machine learning, but we very often read incident response reports where an attacker triggered AV/EDR alerts that were completely ignored, before eventually executing a ransomware attack or exfiltrating data.
 
@@ -20,21 +17,21 @@ Some products make this much harder than it should be. In this post we'll look a
 
 What CPH *does* let you do is view detections ('active attacks') through its Infinity Portal web site - here we see the Threat Hunting tab list 2 'active attacks' i.e. open alerts based on detections:
 
-![](Pastedimage20221125090248.png)
+[![](Pastedimage20221125090248.png)](Pastedimage20221125090248.png)
 
 Drilling down on those 2 alerts:
 
-![](Pastedimage20221125090622.png)
+[![](Pastedimage20221125090622.png)](Pastedimage20221125090622.png)
 
 Modern websites commonly use a [Single Page Application](https://en.wikipedia.org/wiki/Single-page_application) approach where client-side JavaScript code is used to access backend APIs as a user interacts with the web application, avoiding the need for full page refreshes and (usually) resulting in better interactive experience for the user.
 
 If we hit F12 to open the browser's dev tools, open the Network tab and refresh the page, we can watch for Fetch/XmlHttpRequest requests made when the page loads. Searching all content for a distinctive value shown on the web page (e.g. `nvio.x64.exe`) we see a response from `prod-gcp-apollo/` that returns JSON data containing full details of the detection - to be rendered client-side:
 
-![](Pastedimage20221128203349.png)
+[![](Pastedimage20221128203349.png)](Pastedimage20221128203349.png)
 
 The payload in the request that generated this content shows that a query string was submitted, along with parameters controlling date ranges, result order and pagination: 
 
-![](Pastedimage20221128204710.png)
+[![](Pastedimage20221128204710.png)](Pastedimage20221128204710.png)
 
 So now we know we know which endpoint (`prod-gcp-apollo/`) to query, the method (POST), the body of the request, and what the response looks like.
 
@@ -46,21 +43,21 @@ Let's apply the same process to analyse authentication. Check Point provides opt
 
 When we browse to https://ap.portal.checkpoint.com/signin we're prompted for a username, then a password. The Network tab shows a POST against `/auth/user`:
 
-![](Pastedimage20221128210153.png)
+[![](Pastedimage20221128210153.png)](Pastedimage20221128210153.png)
 
 We can see the server response included a directive to set a `cloudinfra` cookie - a signed [JWT](https://en.wikipedia.org/wiki/JSON_Web_Token) - containing assertions about our identity and permissions:
 
-![](Pastedimage20221128210403.png)
+[![](Pastedimage20221128210403.png)](Pastedimage20221128210403.png)
 
 In addition, towards the end of the response we see a value called `csrf` - a Cross Site Request Forgery ([CSRF](https://en.wikipedia.org/wiki/Cross-site_request_forgery))) token with an expiry of 900 seconds (15 minutes):
 
-![](Pastedimage20221128211613.png)
+[![](Pastedimage20221128211613.png)](Pastedimage20221128211613.png)
 
 The browser will automatically include our cookie in subsequent requests to the same origin (https://ap.portal.checkpoint.com). It's likely the server will also expect the CSRF token to be included and will validate that the token corresponds to our session - and potentially the code submitting the request.
 
 Looking at subsequent requests - including the one to retrieve active attacks, we see the same CSRF token appear as a custom HTTP header in the request:
 
-![](Pastedimage20221128211730.png)
+[![](Pastedimage20221128211730.png)](Pastedimage20221128211730.png)
 
 We now know how to authenticate with a username and password, and how to use the returned values (cookie, CSRF token) for subsequent authenticated requests.
 
@@ -187,11 +184,11 @@ The focus of this post is on analysing and scripting the API used by a single pa
 
 Once installed, the add-on should be setup with a password using the simple setup page:
 
-![](Pastedimage20221128220620.png)
+[![](Pastedimage20221128220620.png)](Pastedimage20221128220620.png)
 
 Then create a new Data Input:
 
-![](Pastedimage20221128221139.png)
+[![](Pastedimage20221128221139.png)](Pastedimage20221128221139.png)
 
 ## SIEM Alerts
 
@@ -204,7 +201,7 @@ When we build our detection for Splunk ES we'll dedupe based on `DetectionEvent.
 
 When the detection fires we see our Check Point-generated alerts exposed in the SIEM - exposing key fields to the analyst, enriched with user and endpoint inventory information, and impacting risk scores on the asset and identities involved in the detection:
 
-![](Pastedimage20221125090742.png)
+[![](Pastedimage20221125090742.png)](Pastedimage20221125090742.png)
 
 ## Wrapping Up
 
