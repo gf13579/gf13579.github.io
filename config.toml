@@ -2,11 +2,17 @@ baseURL = 'https://spinningplates.net/'
 languageCode = 'en-us'
 title = 'spinning plates'
 theme = 'PaperMod'
+# copyright = "© 2022 Greg Ford"
+# copyright = '&copy; {{ now.Year }}'
 
 [params]
+  defaultTheme = 'light'
+  description = 'where does this go?'
+  author = "gregf"
+  
   [params.homeInfoParams]
-    Title = 'Hello'
-    Content = 'This is a blog.'
+    Title = 'Howdy'
+    Content = """This is a blog to share a few technical things I have worked on."""
 
   [[params.socialIcons]]
     name = 'twitter'
@@ -14,14 +20,21 @@ theme = 'PaperMod'
   [[params.socialIcons]]
     name = 'mastodon'
     url = 'https://infosec.exchange/@fordy8k'
+  [[params.socialIcons]]
+    name = 'github'
+    url = 'https://github.com/gf13579/'
+  [[params.socialIcons]]
+    name = 'linkedin'
+    url = 'https://www.linkedin.com/in/greg-ford-b70a222/'
 
-[menu]
-[[menu.main]]
-  identifier = 'about'
-  name = 'about hugo'
-  url = '/about/'
-  weight = -110
-[[menu.main]]
-  name = 'getting started'
-  url = '/getting-started/'
-  weight = -100
+
+# [menu]
+# [[menu.main]]
+#   identifier = 'about'
+#   name = 'about hugo'
+#   url = '/about/'
+#   weight = -110
+# [[menu.main]]
+#   name = 'getting started'
+#   url = '/getting-started/'
+#   weight = -100
