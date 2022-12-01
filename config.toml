@@ -5,23 +5,23 @@ theme = 'PaperMod'
 
 [params]
   [params.homeInfoParams]
-    Title = 'Hi there'
-    Content = 'Info, links, about me...'
+    Title = 'Hello'
+    Content = 'This is a blog.'
 
   [[params.socialIcons]]
     name = 'twitter'
     url = 'https://twitter.com/fordy8k'
   [[params.socialIcons]]
-    name = '<platform 2>'
-    url = '<link2>'
+    name = 'mastodon'
+    url = 'https://infosec.exchange/@fordy8k'
 
-[menu]
-[[menu.main]]
-  identifier = 'about'
-  name = 'about hugo'
-  url = '/about/'
-  weight = -110
-[[menu.main]]
-  name = 'getting started'
-  url = '/getting-started/'
-  weight = -100
+# [menu]
+# [[menu.main]]
+#   identifier = 'about'
+#   name = 'about hugo'
+#   url = '/about/'
+#   weight = -110
+# [[menu.main]]
+#   name = 'getting started'
+#   url = '/getting-started/'
+#   weight = -100
