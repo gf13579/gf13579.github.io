@@ -15,13 +15,13 @@ theme = 'PaperMod'
     name = 'mastodon'
     url = 'https://infosec.exchange/@fordy8k'
 
-# [menu]
-# [[menu.main]]
-#   identifier = 'about'
-#   name = 'about hugo'
-#   url = '/about/'
-#   weight = -110
-# [[menu.main]]
-#   name = 'getting started'
-#   url = '/getting-started/'
-#   weight = -100
+[menu]
+[[menu.main]]
+  identifier = 'about'
+  name = 'about hugo'
+  url = '/about/'
+  weight = -110
+[[menu.main]]
+  name = 'getting started'
+  url = '/getting-started/'
+  weight = -100
