@@ -1,8 +1,9 @@
 ---
 title: "Connecting the Unconnectable; Borrowing APIs from Single Page Applications"
-date: 2022-12-01T00:00:00+10:00
+date: 2022-12-01T20:49:16+10:00
 draft: true
 ---
+
 
 A SIEM typically collects event data, run detections, generates alerts and serves as a single pane of glass for security alerts. One of the fundamental types of event to ingest is malware alerts from endpoint antivirus and EDR solutions. Malware alerts may seem dull - no user behaviour analytics, no machine learning, but we very often read incident response reports where an attacker triggered AV/EDR alerts that were completely ignored, before eventually executing ransomware attack or exfiltrating data.
 

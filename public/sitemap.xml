@@ -2,10 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://gregf.au/</loc>
+    <loc>https://spinningplates.net/categories/</loc>
   </url><url>
-    <loc>https://gregf.au/categories/</loc>
+    <loc>https://spinningplates.net/</loc>
   </url><url>
-    <loc>https://gregf.au/tags/</loc>
+    <loc>https://spinningplates.net/tags/</loc>
   </url>
 </urlset>
