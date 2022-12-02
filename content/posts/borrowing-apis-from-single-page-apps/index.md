@@ -176,7 +176,7 @@ TIME_PREFIX=OpTimeUTC":\s
 
 These settings help Splunk parse a millisecond-level epoch-based datetime value like `"OpTimeUTC": 1669271153062`
 
-The focus of this post is on analysing and scripting the API used by a single page application - rather than developing a Splunk add-on. Notable resources are listed below, and the full add-on can be downloaded from [GitHub](https://github.com/gf13579/ta_for_cpharmony) or [Splunkbase](https://splunkbase.splunk.com/) (pending).
+The focus of this post is on analysing and scripting the API used by a single page application - rather than developing a Splunk add-on. Notable resources are listed below, and the full add-on can be downloaded from [GitHub](https://github.com/gf13579/ta_for_cpharmony) or [Splunkbase](https://splunkbase.splunk.com/app/6692) (pending).
 
 | Feature                                  | Purpose                                        | Link                                                                                                                            |     |
 | ---------------------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | --- |
