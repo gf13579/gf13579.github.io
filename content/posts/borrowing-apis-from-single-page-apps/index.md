@@ -48,7 +48,7 @@ We can see the server response included a directive to set a `cloudinfra` cookie
 
 [![](Pastedimage20221128210403.png)](Pastedimage20221128210403.png)
 
-In addition, towards the end of the response we see a value called `csrf` - a Cross Site Request Forgery ([CSRF](https://en.wikipedia.org/wiki/Cross-site_request_forgery))) token with an expiry of 900 seconds (15 minutes):
+In addition, towards the end of the response we see a value called `csrf` - a Cross Site Request Forgery [CSRF](https://en.wikipedia.org/wiki/Cross-site_request_forgery) token with an expiry of 900 seconds (15 minutes):
 
 [![](Pastedimage20221128211613.png)](Pastedimage20221128211613.png)
 
@@ -167,10 +167,10 @@ Finally, we can use the following Splunk-specific `props.conf` configuration set
 
 ```toml
 [checkpoint:harmony:json]
+KV_MODE=json
 TIME_FORMAT=%s%3N
 MAX_TIMESTAMP_LOOKAHEAD=13
 TIME_PREFIX=OpTimeUTC":\s
-KV_MODE=json
 ...
 ```
 
