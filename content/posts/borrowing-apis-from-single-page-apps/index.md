@@ -3,7 +3,7 @@ title: "Connecting the Unconnectable; Borrowing APIs from Single Page Applicatio
 date: 2022-12-02T00:49:16+10:00
 ---
 
-A SIEM typically collects event data, run detections, generates alerts and serves as a single pane of glass for security alerts. One of the fundamental types of event to ingest is malware alerts from endpoint antivirus and EDR solutions. Malware alerts may seem dull - no user behaviour analytics, no machine learning, but we very often read incident response reports where an attacker triggered AV/EDR alerts that were completely ignored, before eventually executing a ransomware attack or exfiltrating data.
+A SIEM typically collects event data, runs detections, generates alerts and serves as a single pane of glass for security alerts. One of the fundamental types of event to ingest is malware alerts from endpoint antivirus and EDR solutions. Malware alerts may seem dull - no user behaviour analytics, no machine learning, but we very often read incident response reports where an attacker triggered AV/EDR alerts that were completely ignored, before eventually executing a ransomware attack or exfiltrating data.
 
 Some products make this easy - cloud-managed solutions might provide an API to poll for new alerts, on-prem products might write events to an event log or log file. Others might let you configure them to send an email or contact a webhook to notify you about a detection.
 
@@ -48,7 +48,7 @@ We can see the server response included a directive to set a `cloudinfra` cookie
 
 [![](Pastedimage20221128210403.png)](Pastedimage20221128210403.png)
 
-In addition, towards the end of the response we see a value called `csrf` - a Cross Site Request Forgery [CSRF](https://en.wikipedia.org/wiki/Cross-site_request_forgery) token with an expiry of 900 seconds (15 minutes):
+In addition, towards the end of the response we see a value called `csrf` - a Cross Site Request Forgery ([CSRF](https://en.wikipedia.org/wiki/Cross-site_request_forgery)) token with an expiry of 900 seconds (15 minutes):
 
 [![](Pastedimage20221128211613.png)](Pastedimage20221128211613.png)
 
