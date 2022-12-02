@@ -1,7 +1,6 @@
 ---
 title: "Connecting the Unconnectable; Borrowing APIs from Single Page Applications"
-date: 2022-12-01T20:49:16+10:00
-draft: true
+date: 2022-12-02T00:49:16+10:00
 ---
 
 A SIEM typically collects event data, run detections, generates alerts and serves as a single pane of glass for security alerts. One of the fundamental types of event to ingest is malware alerts from endpoint antivirus and EDR solutions. Malware alerts may seem dull - no user behaviour analytics, no machine learning, but we very often read incident response reports where an attacker triggered AV/EDR alerts that were completely ignored, before eventually executing a ransomware attack or exfiltrating data.
@@ -135,6 +134,10 @@ def query_active_attacks(self, hours_ago):
 	return response.json()
 ```
 
+We're not currently handling pagination; we're instead working on the assumption that the alerts will be few enough - and poll period frequent enough - that we won't exceed the default maximimum results of 50. We could also try increasing `queryParam["Param"]["maxResults"]` for safety.
+
+
+
 Full code is available here: https://github.com/gf13579/ta_for_cpharmony.
 
 ## SIEM Integration
@@ -167,12 +170,13 @@ Finally, we can use the following Splunk-specific `props.conf` configuration set
 TIME_FORMAT=%s%3N
 MAX_TIMESTAMP_LOOKAHEAD=13
 TIME_PREFIX=OpTimeUTC":\s
+KV_MODE=json
 ...
 ```
 
 These settings help Splunk parse a millisecond-level epoch-based datetime value like `"OpTimeUTC": 1669271153062`
 
-The focus of this post is on analysing and scripting the API used by a single page application - rather than developing a Splunk add-on. Notable resources are listed below, and the full add-on can be downloaded from [Splunkbase](https://splunkbase.splunk.com/) or [GitHub](https://github.com/gf13579/ta_for_cpharmony).
+The focus of this post is on analysing and scripting the API used by a single page application - rather than developing a Splunk add-on. Notable resources are listed below, and the full add-on can be downloaded from [GitHub](https://github.com/gf13579/ta_for_cpharmony) or [Splunkbase](https://splunkbase.splunk.com/) (pending).
 
 | Feature                                  | Purpose                                        | Link                                                                                                                            |     |
 | ---------------------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | --- |
@@ -192,7 +196,7 @@ Then create a new Data Input:
 
 ## SIEM Alerts
 
-Since we're using a poll-based approach with no checkpoint, our scheduled query may well end up ingesting duplicate events. This is fine - we just need to dedupe these before using them in a dashboard or alert.
+Since we're using a time-based poll approach with no checkpointing, our scheduled query may well end up ingesting duplicate events. We could enhance our add-on to maintain state, but for now we'll just dedupe events at search time.
 
 When we build our detection for Splunk ES we'll dedupe based on `DetectionEvent.DetectionIncidentId` and use `props.conf` to normalise the field names a little to comply as best as possible with Splunk's Common Information Model (CIM), ensuring that
 - The most relevant fields are exposed to the analyst;
@@ -207,4 +211,4 @@ When the detection fires we see our Check Point-generated alerts exposed in the 
 
 We overcame a frustrating lack of integration support in a vendor product by scripting the process used by an interactive user. The API-based architecture of the vendor's web application greatly simplified the task, and meant we could do most of the analysis and scripting using standard browser dev tools and a very small amount of Python.
 
-One final point to note - we're using an undocumented API that's intended for Check Point's own web application; so there's a chance the API will change and our code will break. However, this is true even of documented and supported APIs - and one of many reasons to monitor the health of  SIEM log sources. Hopefully Check Point will introduce support for API-based alert integration in the near future. 
+One final point to note - we're using an undocumented API that's intended for Check Point's own web application; so there's a chance the API will change and our code will break. However, this is true even of documented and supported APIs - and one of many reasons to monitor the health of  SIEM log sources. Hopefully Check Point will introduce support for API-based alert integration in the near future.

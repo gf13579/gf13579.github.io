@@ -2,14 +2,16 @@ baseURL = 'https://spinningplates.net/'
 languageCode = 'en-us'
 title = 'spinning plates'
 theme = 'PaperMod'
-# copyright = "© 2022 Greg Ford"
-# copyright = '&copy; {{ now.Year }}'
+
+[author]
+name = "Greg Ford"
 
 [params]
   defaultTheme = 'light'
   description = 'where does this go?'
-  author = "gregf"
-  
+  authorName = "gregf"
+  hideFooter = true
+
   [params.homeInfoParams]
     Title = 'Howdy'
     Content = """This is a blog to share a few technical things I have worked on."""
