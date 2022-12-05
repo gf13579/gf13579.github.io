@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>spinning plates</title>
-    <link>https://spinningplates.net/</link>
-    <description>Recent content on spinning plates</description>
+    <title>Posts on spinning plates</title>
+    <link>https://spinningplates.net/posts/</link>
+    <description>Recent content in Posts on spinning plates</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 02 Dec 2022 00:49:16 +1000</lastBuildDate><atom:link href="https://spinningplates.net/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 02 Dec 2022 00:49:16 +1000</lastBuildDate><atom:link href="https://spinningplates.net/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Connecting the Unconnectable; Borrowing APIs from Single Page Applications</title>
       <link>https://spinningplates.net/posts/borrowing-apis-from-single-page-apps/</link>
