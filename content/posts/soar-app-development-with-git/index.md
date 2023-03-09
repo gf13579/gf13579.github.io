@@ -1,5 +1,5 @@
 ---
-title: "Soar App Development With Git"
+title: "Soar App Development With VS Code and Git"
 date: 2023-03-09T14:23:18+10:00
 draft: true
 ---
@@ -14,11 +14,7 @@ In this post we'll use the Wizard to generate an app in our lab instance of SOAR
 
 ## Create a New App Using the Wizard
 
-Navigate to Apps and hit the App Wizard button:
-
-[![](appwiz-menu.png)](appwiz-menu.png)
-
-Provide basic app information. Hover over the question marks for useful guidance:
+Use Apps->App Wizard to create a new app. Hover over the question marks for useful guidance:
 
 [![](appwiz-example.png)](appwiz-example.png)
 
@@ -41,14 +37,14 @@ ls -rlta | tail -n 1
 phantom phantom   215 Feb 28 11:17 supertool9000_fbaeb1b3-fbe4-4356-a3c8-7e9b35986832
 ```
 
+
 Notable files:
 
-```
-supertool9000.json
-supertool9000_consts.py
-supertool9000_connector.py
-readme.html
-```
+- supertool9000.json
+- supertool9000_consts.py
+- supertool9000_connector.py
+- readme.html
+
 
 ## Moving to VS Code and Git
 
@@ -77,7 +73,9 @@ You may need to re-open the folder for VS Code to recognise this folder as being
 
 [![](vscode-commit.png)](vscode-commit.png)
 
-Add a remote origin, or just use Code’s built-in support for publishing to GitHub
+Add a remote origin, or just use Code’s convenient support for publishing to GitHub:
+
+[![](publish-to-github.png)]([publish-to-github].png)
 
 Create a hooks folder under `.git/` and create two files:
 
@@ -166,7 +164,7 @@ The log gives us more details and a link to the offending code:
 
 [![](git-error-on-commit-log.png)](git-error-on-commit-log.png)
 
-Note that we could've used linting within Code to identify the issue before compiling the code:
+Note that we could've made use of a linter in Code to identify the issue before compiling the code:
 
 [![](linting-errors.png)](linting-errors.png)
 
@@ -180,7 +178,7 @@ from phantom.action_result import ActionResult  # type: ignore
 
 ## Tactical Deployment for quick code change tests
 
-Rather than commit and compile the app for every single code change, let's add a build task that will all .py files over from the working directory to the app's directory within /opt/soar/apps:
+Rather than commit and compile the app for every single code change, let's add a build task that will all .py files over from the working directory to the app's directory within `/opt/soar/apps`:
 
 Use Code's command palette to create a task - or just create `.vscode/tasks.json`:
 
