@@ -120,11 +120,122 @@ For icons:
 yarn add @mui/icons-material
 ```
 
+## Attempt 3
+
+Download and the Material UI create-react-app example from https://github.com/mui/material-ui/tree/master/examples/create-react-app
+
+```bash
+curl https://codeload.github.com/mui/material-ui/tar.gz/master | tar -xz --strip=2 material-ui-master/examples/create-react-app
+cd create-react-app
+# Install it and run:
+yarn install
+yarn start
+```
+
+Incorporate the dashboard template from https://mui.com/material-ui/getting-started/templates/ - specifically https://github.com/mui/material-ui/tree/v5.11.2/docs/data/material/getting-started/templates/dashboard
+
+```bash
+# Clone MUI and put the dashboard example files into our new create-react-app project
+cd /tmp
+git clone https://github.com/mui/material-ui.git
+cp material-ui/docs/data/material/getting-started/templates/dashboard/* ~/create-react-app/src/
+
+# Update packages.json to ensure dependencies includes `@mui/material, @mui/icons-material, @emotion/styled, @emotion/react, recharts`
+cd ~/create-react-app
+vi package.json
+# ...
+yarn install
+```
+
+Now import and use the dashboard - in `index.js`, import the Dashboard function from Dashboard.js (minus the .js) and invoke a Dashboard
+
+```js
+//...
+import Dashboard from './Dashboard';
+
+//...
+
+root.render(
+  <ThemeProvider theme={theme}>
+    {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+    <CssBaseline />
+    <Dashboard />
+  </ThemeProvider>,
+  
+);
+```
+
+Updated Dashboard.js to provide a parameter to createTheme - specifying mode:dark.
+
+```js
+const mdTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
+```
+
+Note that I could support the system preference and/or provide a button to switch: https://mui.com/material-ui/customization/dark-mode/
+
+### Adding material-react-table
+
+```bash
+cd ~/create-react-app
+yarn add material-react-table
+
+# Alternative installation - with dependencies that we've already got
+# yarn add material-react-table @mui/material @mui/icons-material @emotion/react @emotion/styled
+```
+
+From https://www.material-react-table.com/docs/getting-started/usage, create MtrTable.js, following the approach used by other tutorial code - with a .js file per component on the page.
+
+- Created MtrTable.js and populated with all content from the example's App.js
+- Changed `export default function App() {` to `export default function MtrTable() {`
+- Enclosed the output in `<React.Fragment>...</React.Fragment>`
+- Added `import MtrTable from './MtrTable'` to Dashboard.js
+
+```js
+    return (
+        <React.Fragment>
+            <MaterialReactTable
+                columns={columns}
+                data={data}
+                enableRowSelection //enable some features
+                enableColumnOrdering
+                enableGlobalFilter={false} //turn off a feature
+              />
+        </React.Fragment>
+    )
+```
+
+Instantiate a MaterialReactTable object within our Dashboard's content:
+
+```js
+<Grid>
+//...
+
+    {/* Recent Orders */}
+    <Grid item xs={12}>
+    <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+        <Orders />
+    </Paper>
+    </Grid>
+
+    <Grid item xs={12}>
+        <MtrTable></MtrTable>
+    </Grid>
+
+</Grid>
+<Copyright sx={{ pt: 4 }} />
+```
+
+
 
 ## Next steps
 
-- Get a MUI page up and running - maybe this? - https://github.com/mui/material-ui/tree/master/examples/create-react-app
-- get a material-react-table up and running using the tutorial code
+- build a quick flask api following https://www.digitalocean.com/community/tutorials/how-to-use-an-sqlite-database-in-a-flask-application
+- populate my material-react-table with the results of the API query (via axios? - https://create-react-app.dev/docs/fetching-data-with-ajax-requests)
+- selector for entity - and update table in response
 - Continue reading https://reactjs.org/tutorial/tutorial.html#what-is-react
-- connect it to my backend (via axios? - https://create-react-app.dev/docs/fetching-data-with-ajax-requests)
-- get a pretty admin dashboard template working
+- connect it to my backend 
+- customise the admin dashboard template - make clicking functional
