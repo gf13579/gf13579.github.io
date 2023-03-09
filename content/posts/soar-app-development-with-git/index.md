@@ -1,16 +1,18 @@
 ---
 title: "Soar App Development With VS Code and Git"
 date: 2023-03-09T14:23:18+10:00
-draft: true
+draft: false
 ---
 
 Security automation typically involves making connections to services - typically REST APIs both internal (e.g AD) and external (e.g. VirusTotal). Splunk's SOAR solution has a [large library of apps](https://github.com/splunk-soar-connectors) but it's a pretty common requirement to connect to a service that doesn't yet have an app.
 
 SOAR makes it fairly easy to develop custom apps (connectors), which help abstract away some of the pain points of working with an API - including authentication, pagination, transformation of returned content and error handling. SOAR's App Wizard is an excellent tool for generating the bare bones of an app, including a lot of boilerplate code and comments that help explain what needs to be done to make the app useful.
 
-While SOAR makes heavy use of git for version control of playbooks, it doesn't use git for apps. In addition, the Wizard's code editor is functional, but lacks standard IDE features like linting and autocompletion, and quickly becomes frustrating to work with.
+While SOAR makes heavy use of Git for version control of playbooks, it doesn't use Git for apps. In addition, the Wizard's code editor is functional, but lacks standard IDE features like linting and autocompletion, and quickly becomes frustrating to work with.
 
-In this post we'll use the Wizard to generate an app in our lab instance of SOAR, then switch to VS Code - editing remotely over SSH - and git to further develop and manage the application whilst making it easy to apply changes for testing. Our use of SOAR's `compile_app` in a pre-commit script will cause the commit the fail and highlight the problem to fix before deploying and testing the change.
+In this post we'll use the Wizard to generate an app in our lab instance of SOAR, then switch to VS Code - editing remotely over SSH - and Git to further develop and manage the application whilst making it easy to apply changes for testing. Once deployed, the resulting app is still compatible with the Wizard - tactical changes could be made using SOAR's UI, if required.
+
+In addition to the benefits of a full IDE and source code control, we'll use Git hooks to trigger code validation on commit, highlighting problems to fix before deploying and testing the change.
 
 ## Create a New App Using the Wizard
 
@@ -141,7 +143,7 @@ with tempfile.TemporaryDirectory() as dirpath:
     exit(result.returncode)
 ```
 
-The `pre-commit` app compile action should cause the commit to fail - with the `compile_app` output visible in the git log - if there’s a problem compiling the app.
+The `pre-commit` app compile action should cause the commit to fail - with the `compile_app` output visible in the Git log - if there’s a problem compiling the app.
 
 To test the commit/compile workflow:
 
@@ -266,6 +268,6 @@ The SOAR App Wizard generates a lot of skeleton code including utility functions
 
 ## Summary
 
-In this article we created a SOAR app within the UI then switched to further the develop it in VS Code and manage the codebase in git. Future posts may cover remote debugging and CI/CD.
+In this article we created a SOAR app within the UI then switched to further the develop it in VS Code and manage the codebase in Git. Future posts may cover remote debugging and CI/CD.
 
 Check out Splunk's [documentation](https://docs.splunk.com/Documentation/SOAR/current/DevelopApps/Overview), which covers much of what's required to make an app useful, including a full API reference and functional tutorial to develop a connector for ipinfo.io from scratch.
