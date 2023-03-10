@@ -6,7 +6,7 @@ images:
  - vscode-commit.png
 ---
 
-Security automation typically involves making connections to services - typically REST APIs both internal (e.g AD) and external (e.g. VirusTotal). Splunk's SOAR solution has a [large library of apps](https://github.com/splunk-soar-connectors) but it's a pretty common requirement to connect to a service that doesn't yet have an app.
+Security automation typically involves making connections to services - typically APIs both internal (e.g AD) and external (e.g. VirusTotal). Splunk's SOAR solution has a [large library of apps](https://github.com/splunk-soar-connectors) but it's a pretty common requirement to connect to a service that doesn't yet have an app.
 
 SOAR makes it fairly easy to develop custom apps (connectors), which help abstract away some of the pain points of working with an API - including authentication, pagination, transformation of returned content and error handling. SOAR's App Wizard is an excellent tool for generating the bare bones of an app, including a lot of boilerplate code and comments that help explain what needs to be done to make the app useful.
 
