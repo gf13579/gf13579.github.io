@@ -2,6 +2,8 @@
 title: "Soar App Development With VS Code and Git"
 date: 2023-03-09T14:23:18+10:00
 draft: false
+images:
+ - vscode-commit.png
 ---
 
 Security automation typically involves making connections to services - typically REST APIs both internal (e.g AD) and external (e.g. VirusTotal). Splunk's SOAR solution has a [large library of apps](https://github.com/splunk-soar-connectors) but it's a pretty common requirement to connect to a service that doesn't yet have an app.
@@ -270,4 +272,4 @@ The SOAR App Wizard generates a lot of skeleton code including utility functions
 
 In this article we created a SOAR app within the UI then switched to further the develop it in VS Code and manage the codebase in Git. Future posts may cover remote debugging and CI/CD.
 
-Check out Splunk's [documentation](https://docs.splunk.com/Documentation/SOAR/current/DevelopApps/Overview), which covers much of what's required to make an app useful, including a full API reference and functional tutorial to develop a connector for ipinfo.io from scratch.
+Check out Splunk's [documentation](https://docs.splunk.com/Documentation/SOAR/current/DevelopApps/Overview), which covers much of what's required to make an app useful, including a full API reference and functional tutorial to develop a connector for ipinfo.io from scratch. Also take a look at their [VS Code Extension](https://marketplace.visualstudio.com/items?itemName=Splunk.vscode-splunk-soar) for further interacting with your SOAR instance during development.
