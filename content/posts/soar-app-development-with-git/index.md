@@ -3,7 +3,7 @@ title: "Soar App Development With VS Code and Git"
 date: 2023-03-09T14:23:18+10:00
 draft: false
 images:
- - vscode-commit.png
+ - posts/soar-app-development-with-git/vscode-commit.png
 ---
 
 Security automation typically involves making connections to services - typically APIs both internal (e.g AD) and external (e.g. VirusTotal). Splunk's SOAR solution has a [large library of apps](https://github.com/splunk-soar-connectors) but it's a pretty common requirement to connect to a service that doesn't yet have an app.
